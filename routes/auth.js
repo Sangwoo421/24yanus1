@@ -21,13 +21,11 @@ router.get('/kakao', passport.authenticate('kakao'));
 router.get('/kakao/callback', passport.authenticate('kakao', {
   failureRedirect: '/',
 }), (req, res) => {
-  // 사용자 닉네임을 세션에 저장
-  if (req.user && req.user.nick) {
-    req.session.nick = req.user.nick; // 예시로 사용자 모델에 닉네임 필드가 있다고 가정
-  }
-
-  res.redirect('/?loggedIn=true');
+  // 로그인 성공 후 사용자 닉네임을 URL 쿼리 파라미터에 포함하여 클라이언트로 리디렉션
+  const userNick = req.user ? encodeURIComponent(req.user.nick) : '';
+  res.redirect(`/?loggedIn=true&nickname=${userNick}`);
 });
+
 
 module.exports = router;
 
