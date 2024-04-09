@@ -1,5 +1,3 @@
-// routes/user.js 파일 생성
-
 const express = require('express');
 const { isLoggedIn } = require('./middlewares'); // 사용자 인증 상태를 확인하는 미들웨어
 const User = require('../models/user'); // 사용자 모델

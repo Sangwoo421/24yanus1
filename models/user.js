@@ -38,16 +38,5 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    // db.User.hasMany(db.Post); // 이 줄을 제거하거나 주석 처리
-    db.User.belongsToMany(db.User, {
-      foreignKey: 'followingId',
-      as: 'Followers',
-      through: 'Follow',
-    });
-    db.User.belongsToMany(db.User, {
-      foreignKey: 'followerId',
-      as: 'Followings',
-      through: 'Follow',
-    });
   }
 };
